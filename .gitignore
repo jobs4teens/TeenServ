@@ -25,3 +25,5 @@
 /public/packs-test
 
 /coverage
+
+/vendor/bundle
