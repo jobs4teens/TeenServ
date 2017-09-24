@@ -15,6 +15,5 @@ jobs:
       - run: chmod +x ./cc-test-reporter
       - run: ./cc-test-reporter before-build
       - run: bundle exec rails test
-      - run: ./cc-test-reporter after-build --exit-code $?
       - run: ./cc-test-reporter format-coverage -t simplecov $CIRCLE_ARTIFACTS/coverage/.resultset.json
       - run: ./cc-test-reporter upload-coverage
