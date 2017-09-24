@@ -1,7 +1,7 @@
 version: 2
 
 jobs:
-  test:
+  build:
     environment:
       CC_TEST_REPORTER_ID: ceb69f220178a8bb8e26eb3b50de5bcbb9034fec32d1eee721db4dd20a561bd9
     docker:
