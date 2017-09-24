@@ -52,6 +52,13 @@ It will be used to get all of the Javascript dependencies for this project. You 
 
 ## Development
 
+Install Gems and NPM packages:
+
+```
+    bundle install
+    yarn install
+```
+
 Run the development `Procfile` using foreman:
 
 ```
