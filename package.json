@@ -1,5 +1,5 @@
 {
-  "name": "TeenServ",
+  "name": "jobs4teens",
   "private": true,
   "dependencies": {
     "@rails/webpacker": "^3.0.1",
