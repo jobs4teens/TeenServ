@@ -1,5 +1,5 @@
 # jobs4teens
-
+![CircleCI](https://circleci.com/gh/jobs4teens/jobs4teens.svg?style=shield&circle-token=35cb224071c36ddfd26bb8af6768fb0c4f5fdeff)
 [![Code Climate](https://codeclimate.com/github/jobs4teens/jobs4teens/badges/gpa.svg)](https://codeclimate.com/github/jobs4teens/jobs4teens)
 [![Test Coverage](https://codeclimate.com/github/jobs4teens/jobs4teens/badges/coverage.svg)](https://codeclimate.com/github/jobs4teens/jobs4teens/coverage)
 
