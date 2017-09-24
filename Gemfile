@@ -22,6 +22,9 @@ gem 'webpacker'
 gem 'react-rails', git: 'https://github.com/reactjs/react-rails.git', branch: 'master'
 # See https://github.com/rails/execjs#readme for more supported runtimes
 gem 'therubyracer', platforms: :ruby
+# Code Coverage Reporter
+gem 'simplecov', :require => false, :group => :test
+
 
 # Use CoffeeScript for .coffee assets and views
 gem 'coffee-rails', '~> 4.2'
