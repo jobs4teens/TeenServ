@@ -3,10 +3,14 @@
 [![Code Climate](https://codeclimate.com/github/jobs4teens/jobs4teens/badges/gpa.svg)](https://codeclimate.com/github/jobs4teens/jobs4teens)
 [![Test Coverage](https://codeclimate.com/github/jobs4teens/jobs4teens/badges/coverage.svg)](https://codeclimate.com/github/jobs4teens/jobs4teens/coverage)
 
+Jobs4teens is a web-based teenage services market place created for the CSC444 (Software Engineering) course at the 
+University of Toronto. It connects teenagers willing to provide specific services such as babysitting, lawn-mowing, 
+snow-shovelling, yard-cleanup, etc. to local clients willing to hire them.
+
 ## Prerequisites
 
 
-**Note**: The versions listed are the ones I have in use. Compatibility with earlier versions is most likely possible,
+**Note**: The versions listed are the target versions. Compatibility with earlier versions is most likely possible,
 but with no guarantees since no testing has been done with them.
 
 * Ruby 2.4+
@@ -15,7 +19,7 @@ Getting the latest version of Ruby from the [downloads](https://www.ruby-lang.or
 
 * Rails 5.1+
 
-This is only if you want a commmand line rails option. Rails is listed in the Gemfile as well and can be used from
+This is only if you want a command line rails option. Rails is listed in the Gemfile as well and can be used from
 there. Rails 5.1 introduces significant JS ecosystem integration that should be helpful with the development process, and
 anything less than Rails 5 may cause incompatibility with the other gems.
 
@@ -46,5 +50,12 @@ get Node [here](https://nodejs.org/en/). Node 6+ should be ok, but it has not be
 Yarn is a Javascript package manager similar to and in some ways better than the built in Node Package Manager (NPM).
 It will be used to get all of the Javascript dependencies for this project. You can get Yarn [here](https://yarnpkg.com/en/docs/install)
 
+## Development
 
-Project is still under construction, stay tuned!
+Run the development `Procfile` using foreman:
+
+```
+    foreman start -f Procfile.dev
+```
+
+Go to `localhost:5000` to view results.
