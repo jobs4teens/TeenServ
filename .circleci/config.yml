@@ -6,6 +6,15 @@ jobs:
       CC_TEST_REPORTER_ID: ceb69f220178a8bb8e26eb3b50de5bcbb9034fec32d1eee721db4dd20a561bd9
     docker:
       - image: circleci/ruby:2.4.1-node-browsers
+        environment:
+          PGHOST: 127.0.0.1
+          PGUSER: myapp-test
+          RAILS_ENV: test
+      - image: circleci/postgres:9.5-alpine
+        environment:
+          POSTGRES_USER: myapp
+          POSTGRES_DB: myapp-test
+          POSTGRES_PASSWORD: ""
     working_directory: ~/repo
     steps:
       - checkout
