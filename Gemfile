@@ -24,7 +24,8 @@ gem 'react-rails', git: 'https://github.com/reactjs/react-rails.git', branch: 'm
 gem 'therubyracer', platforms: :ruby
 # Code Coverage Reporter
 gem 'simplecov', :require => false, :group => :test
-
+# Postgres
+gem 'pg'
 
 # Use CoffeeScript for .coffee assets and views
 gem 'coffee-rails', '~> 4.2'
