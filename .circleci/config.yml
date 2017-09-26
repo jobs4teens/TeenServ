@@ -8,7 +8,7 @@ jobs:
       - image: circleci/ruby:2.4.1-node-browsers
         environment:
           PGHOST: 127.0.0.1
-          PGUSER: myapp-test
+          PGUSER: myapp
           RAILS_ENV: test
       - image: circleci/postgres:9.5-alpine
         environment:
@@ -19,10 +19,10 @@ jobs:
     steps:
       - checkout
       - restore_cache:
-          key: gem-cache-{{ .Branch }}-{{ checksum "Gemfile.lock" }}
+          key: gem-cache-{{ .Branch }}-{{ checksum "Gemfile" }}
       - run: bundle install --path vendor/bundle
       - save_cache:
-          key: gem-cache-{{ .Branch }}-{{ checksum "Gemfile.lock" }}
+          key: gem-cache-{{ .Branch }}-{{ checksum "Gemfile" }}
           paths:
             - vendor/bundle
       - restore_cache:
