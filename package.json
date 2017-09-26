@@ -2,7 +2,8 @@
   "name": "jobs4teens",
   "private": true,
   "engines": {
-    "yarn": "1.0.2"
+    "node": "6.x.x",
+    "yarn": "0.25.x"
   },
   "dependencies": {
     "@rails/webpacker": "^3.0.1",
