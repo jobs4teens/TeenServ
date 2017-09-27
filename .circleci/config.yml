@@ -1,7 +1,7 @@
 version: 2
 
 jobs:
-  build:
+  - build:
     environment:
       CC_TEST_REPORTER_ID: ceb69f220178a8bb8e26eb3b50de5bcbb9034fec32d1eee721db4dd20a561bd9
     docker:
@@ -39,7 +39,7 @@ jobs:
       - run: bundle exec rails test
       - run: ./cc-test-reporter format-coverage -t simplecov $CIRCLE_ARTIFACTS/coverage/.resultset.json
       - run: ./cc-test-reporter upload-coverage
-  deploy:
+  - deploy:
 	docker:
 	  - image: circleci/ruby:2.4.1-node-browsers
     steps:
