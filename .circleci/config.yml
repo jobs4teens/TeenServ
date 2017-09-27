@@ -52,8 +52,6 @@ jobs:
           name: Deploy Master to Heroku
           command: |
             if [ "${CIRCLE_BRANCH}" == "master" ]; then
-              heroku buildpacks:add heroku/nodejs
-              heroku buildpacks:add heroku/ruby
               heroku config:set NODE_ENV=production
               git push heroku master
               heroku run bundle exec rails webpacker:compile
