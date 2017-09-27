@@ -19,17 +19,17 @@ jobs:
     steps:
       - checkout
       - restore_cache:
-          key: gem-cache-{{ .Branch }}-{{ checksum "Gemfile" }}
+          key: gem-cache-{{ checksum "Gemfile" }}
       - run: bundle install --path vendor/bundle
       - save_cache:
-          key: gem-cache-{{ .Branch }}-{{ checksum "Gemfile" }}
+          key: gem-cache-{{ checksum "Gemfile" }}
           paths:
             - vendor/bundle
       - restore_cache:
-          key: yarn-cache-{{ .Branch }}-{{ checksum "yarn.lock" }}
+          key: yarn-cache-{{ checksum "yarn.lock" }}
       - run: yarn install
       - save_cache:
-          key: yarn-cache-{{ .Branch }}-{{ checksum "yarn.lock" }}
+          key: yarn-cache-{{ checksum "yarn.lock" }}
           paths:
             - node_modules
       - run: rake db:create && rake db:migrate
