@@ -6,26 +6,64 @@ jobs:
       CC_TEST_REPORTER_ID: ceb69f220178a8bb8e26eb3b50de5bcbb9034fec32d1eee721db4dd20a561bd9
     docker:
       - image: circleci/ruby:2.4.1-node-browsers
+        environment:
+          PGHOST: 127.0.0.1
+          PGUSER: myapp
+          RAILS_ENV: test
+      - image: circleci/postgres:9.5-alpine
+        environment:
+          POSTGRES_USER: myapp
+          POSTGRES_DB: myapp-test
+          POSTGRES_PASSWORD: ""
     working_directory: ~/repo
     steps:
       - checkout
       - restore_cache:
-          key: gem-cache-{{ .Branch }}-{{ checksum "Gemfile.lock" }}
+          key: gem-cache-{{ checksum "Gemfile" }}
       - run: bundle install --path vendor/bundle
       - save_cache:
-          key: gem-cache-{{ .Branch }}-{{ checksum "Gemfile.lock" }}
+          key: gem-cache-{{ checksum "Gemfile" }}
           paths:
             - vendor/bundle
       - restore_cache:
-          key: yarn-cache-{{ .Branch }}-{{ checksum "yarn.lock" }}
+          key: yarn-cache-{{ checksum "yarn.lock" }}
       - run: yarn install
       - save_cache:
-          key: yarn-cache-{{ .Branch }}-{{ checksum "yarn.lock" }}
+          key: yarn-cache-{{ checksum "yarn.lock" }}
           paths:
             - node_modules
+      - run: rake db:create && rake db:migrate
       - run: curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
       - run: chmod +x ./cc-test-reporter
       - run: ./cc-test-reporter before-build
       - run: bundle exec rails test
       - run: ./cc-test-reporter format-coverage -t simplecov $CIRCLE_ARTIFACTS/coverage/.resultset.json
       - run: ./cc-test-reporter upload-coverage
+  deploy:
+    machine:
+      enabled: true
+    steps:
+      - checkout
+      - run: bash .circleci/setup-heroku.sh
+      - add_ssh_keys:
+          fingerprints:
+            - "ec:f6:69:82:fb:01:51:6e:20:3c:4e:d1:7e:56:fd:3a"
+      - deploy:
+          name: Deploy Master to Heroku
+          command: |
+            heroku config:set NODE_ENV=production
+            git push heroku master
+            heroku run bundle exec rails webpacker:compile
+            heroku restart
+
+workflows:
+  version: 2
+  build-and-deploy:
+    jobs:
+      - build
+      - deploy:
+          requires:
+            - build
+          filters:
+            branches:
+              only: master
