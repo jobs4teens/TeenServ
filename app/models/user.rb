@@ -9,4 +9,6 @@ class User < ApplicationRecord
   validates :password, presence: true, length: { minimum: 6 }
   validates :user_type, presence: true
 
+  has_many :listing
+  
 end
